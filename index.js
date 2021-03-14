@@ -9,6 +9,7 @@ let dbCollection = mongoose.model('corey', {
     sex:String
 })
 
+var blogInitData = require('./mock/initState.json')
 
 const MongoClient = require('mongodb').MongoClient;
 // const uri = "mongodb+srv://corey:<password>@cluster0.iiv9h.mongodb.net/<dbname>?retryWrites=true&w=majority";
@@ -24,7 +25,7 @@ var service = express();
 
 var uE= bodyParser.urlencoded({extended:false});
 
-service.use(bodyParser.json());corey
+service.use(bodyParser.json());
 service.use(bodyParser.urlencoded({ extended: false }));  
 
 ///设置允许跨域访问
@@ -62,10 +63,16 @@ service.get('/login', function(req,res) {
 
     let username = req.query.username;
     if(username === 'corey') {
-        res.send({status:0,data:obj})
+        res.send({status:0,data:'登陆成功'})
     }
     
     // console.log(res)
+})
+
+// 获取页面初始化数据
+service.get('/initData', function(req,res) {
+    console.log('++++++initData',req.query)
+    res.send({status:0,info:'亲页面数据获取成功',data:blogInitData})
 })
 
 service.listen(5000, () => {
