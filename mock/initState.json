@@ -64,6 +64,12 @@
             "child":[]
         },
         {
+            "id":"t_6",
+            "title":"记忆训练",
+            "link":"/jiyixunlian",
+            "child":[]
+        },
+        {
             "id":"t_5",
             "title":"网站建设",
             "link":"/wangjian",

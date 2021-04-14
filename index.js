@@ -9,7 +9,12 @@ let dbCollection = mongoose.model('corey', {
     sex:String
 })
 
+// 引入数据
+    // 1. 页面初始化数据
 var blogInitData = require('./mock/initState.json')
+
+    // 2、记忆训练数据
+let memoryData = require('./mock/memoryData.json')
 
 const MongoClient = require('mongodb').MongoClient;
 // const uri = "mongodb+srv://corey:<password>@cluster0.iiv9h.mongodb.net/<dbname>?retryWrites=true&w=majority";
@@ -37,11 +42,6 @@ service.all('*', function(req, res, next) {
     res.header("Content-Type", "application/json;charset=utf-8");
     next();
 });
-
-var obj = [
-    {"name":"corey",age:11,address:'llalal',time:"2018-10-10"},
-    {"name":"corey",age:11,address:'llalal',time:"2018-10-10"},
-];
 
 service.post('/req',uE,function(req,res) {
     console.log('------------req',req.body)
@@ -73,6 +73,12 @@ service.get('/login', function(req,res) {
 service.get('/initData', function(req,res) {
     console.log('++++++initData',req.query)
     res.send({status:0,info:'亲页面数据获取成功',data:blogInitData})
+})
+
+// 获取记忆训练的数据
+service.get('/memory_data', function(req,res) {
+    console.log('++++++xunLian',req.query)
+    res.send({status:0,info:'记忆训练数据获取成功',data:memoryData})
 })
 
 service.listen(5000, () => {
